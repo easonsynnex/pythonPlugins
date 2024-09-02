@@ -56,20 +56,38 @@ def compare_colors_in_while_true():
 
         #print(f"屏幕上的颜色: {screen_color}")
         #print(f"目标颜色: {target_color}")
-        print(f"颜色是否一致: {is_same_color}")
+        #print(f"颜色是否一致: {is_same_color}")
         # 判断怪是否出来
-        global monster_appear
+        global monster_appear, last_appear_time
         if is_same_color:
+            if not monster_appear:
+                print('怪出现了')
             monster_appear = True
             last_appear_time = datetime.now()
+            #TODO 怪出来了
             #TODO 打怪->捡箱子->切线
 
         else:
+            if monster_appear:
+                print('怪消失了')
             monster_appear = False
-            #TODO 转圈捡箱子？超过2秒没捡到箱子则切线，下次技能先1接近boss
+            #TODO 转圈捡箱子？超过2秒没捡到箱子则切线，下次技能先ss 再按1接近boss
+            now = datetime.now()
+            diff = abs(now - last_appear_time)
+            if diff.total_seconds() <= 1:
+                print('捡箱子')
+                #F捡箱子
+                print('FFFFFFFFF捡箱子')
+                # pyautogui.keyDown('F')
+                # sleep(0.2)
+                # pyautogui.keyUp('F')
+                # TODO 切线
+                print('切线')
+            # else:
+            #
+            #     print(f'超过1秒 {diff} 等待怪出现')
 
-
-        print(f'怪是否出现{monster_appear}')
+        #print(f'怪是否出现{monster_appear}')
         sleep_interrupted(0.5)
 
 def judge_rtf_switch():
