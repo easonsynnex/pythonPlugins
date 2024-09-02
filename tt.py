@@ -1,0 +1,43 @@
+import os
+import time
+from pydmdll import DM
+if __name__ == '__main__':
+    dm = DM()
+    # dm = DM(dll_path="你自己的版本路径-绝对路径")
+    # 取消注册
+    # dm.Un_reg()
+    # 打开记事本
+    #os.system("start notepad.exe")
+    time.sleep(1)
+    # 窗口句柄就是一个int类型的数字
+    txt_hwnd =  dm.FindWindow("WeChatMainWndForPC", "微信")
+    print(txt_hwnd)
+
+    # 最大化指定窗口,同时激活窗口.
+    f = dm.SetWindowState(txt_hwnd, 4)
+    # print(f)
+    # 使记事本窗口移动
+    dm.MoveWindow(txt_hwnd, 110, 10)
+    print("GetWindowProcessPath",dm.GetWindowProcessPath(txt_hwnd))
+    print("dm.GetWindowState(txt_hwnd,1)",dm.GetWindowState(txt_hwnd,4))
+    # 打印注册路径
+    path = dm.GetBasePath()
+    print('注册路径' + path)
+    # 获取剪贴板
+    print(dm.GetClipboard())
+    # 获取标题还有.py的所有句柄
+    # 注意：返回的是str，但句柄必须是int类型，要强行转化
+    # hwnd_str_list=dm.EnumWindow(0,".py","",1+2+4+8).split(",")
+    # print(hwnd_str_list)
+    # for hwnd in hwnd_str_list:
+    # print(dm.GetWindowClass(int(hwnd)))
+    # print(dm.GetWindowProcessPath(int(hwnd)))
+    # print(dm.GetWindowTitle(int(hwnd)))
+    # dm.MoveWindow(int(hwnd),100,100)
+    # 推荐相对移动
+    dm.MoveR(40, 10)
+    if dm.ver() == '3.1233':
+        print('注册成功  大漠版本为')
+    else:
+        print('djjj版本不对')
+        exit()
