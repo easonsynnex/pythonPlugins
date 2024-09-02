@@ -66,7 +66,8 @@ def compare_colors_in_while_true():
 
         else:
             monster_appear = False
-            #TODO 转圈捡箱子？
+            #TODO 转圈捡箱子？超过2秒没捡到箱子则切线，下次技能先1接近boss
+
 
         print(f'怪是否出现{monster_appear}')
         sleep_interrupted(0.5)
