@@ -1,6 +1,7 @@
 from time import sleep
 import pygetwindow as gw
 import pyautogui
+import tkinter
 from pyautogui import ImageNotFoundException
 
 
